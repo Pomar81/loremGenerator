@@ -55,7 +55,5 @@ class TextGen {
     }
 }
 
-let textGen = new TextGen('./source.txt');
-console.log(textGen.generateParagraph(5, false));
 
-// module.exports.textGenerator = generateSource();
+ exports = module.exports = TextGen;
