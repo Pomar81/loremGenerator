@@ -22,20 +22,20 @@ class TextGen {
         return this._srcString;
     }
 
-    generateSentence(lorem = false, complex =false){
+    generateSentence(words = 3, lorem = false, complex =false){
         let str = "";
-        if (complex) {
-            str += this.generateSentence(lorem).slice(0,-1);
-            str += ", " + this.generateSentence(false).toLowerCase();
+        if (words > 8) {
+            const firstPart = Math.floor(Math.random()*(words-5))+3;
+            str += this.generateSentence(firstPart, lorem).slice(0,-1);
+            str += ", " + this.generateSentence(words - firstPart, false).toLowerCase();
             return str;
         }
-        let wordNumber = Math.floor(Math.random()*10) + 1;
-        for(let i = 0; i < wordNumber; i++){
+        for(let i = 0; i < words; i++){
             str += this.generateWord();
             if (i === 0){
                 str = str.split("").reduce((p1, p2, number, ts) => p1 + (number===0?p2.toUpperCase():p2) , "");
             }
-            if (i < wordNumber -1)
+            if (i < words -1)
                 str+= " ";
         }
         if (lorem && !str.startsWith("Lorem ipsum "))
@@ -44,11 +44,11 @@ class TextGen {
         return str + ".";
     }
 
-    generateParagraph(sentenceNumber = 10, lorem = false) {
+    generateParagraph(sentences = 10, lorem = false) {
         let str = "";
-        for (let i = 0; i < sentenceNumber; i++) {
-            str += this.generateSentence((i === 0)? lorem : false, Math.round(Math.random()));
-            if (i < sentenceNumber - 1)
+        for (let i = 0; i < sentences; i++) {
+            str += this.generateSentence((Math.floor(Math.random()*8) +5), (i === 0)? lorem : false, Math.round(Math.random()));
+            if (i < sentences - 1)
                 str += " ";
         }
         return str;
