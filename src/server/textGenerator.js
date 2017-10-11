@@ -24,13 +24,39 @@ class TextGen {
 
     generateSentence(words = 3, lorem = false, complex =false){
         let str = "";
-        if (words > 8) {
+       /* if (words > 8) {
             const firstPart = Math.floor(Math.random()*(words-5))+3;
             str += this.generateSentence(firstPart, lorem).slice(0,-1);
             str += ", " + this.generateSentence(words - firstPart, false).toLowerCase();
             return str;
+        }*/
+
+        if (words > 9) {
+            let remainWords = words;
+            let tempStr;
+            let curWords;
+
+            let i = 0;
+            while (remainWords > 0) {
+                if (remainWords <= 9)
+                    curWords = remainWords;
+                else if (remainWords < 12)
+                    curWords = Math.floor(Math.random()*(remainWords - 5)) + 3;
+                else
+                    curWords = Math.floor(Math.random()*7) + 3;
+
+                tempStr = this.generateSentence(curWords, i===0?lorem:false);
+                remainWords -= curWords;
+                if (remainWords > 0)
+                    tempStr = tempStr.slice(0,-1) + ", ";
+                if (i > 0)
+                    tempStr = tempStr.toLowerCase();
+                i++;
+                str += tempStr;
+            }
+            return str;
         }
-        for(let i = 0; i < words; i++){
+        for (let i = 0; i < words; i++) {
             str += this.generateWord();
             if (i === 0){
                 str = str.split("").reduce((p1, p2, number, ts) => p1 + (number===0?p2.toUpperCase():p2) , "");
@@ -47,7 +73,7 @@ class TextGen {
     generateParagraph(sentences = 10, lorem = false) {
         let str = "";
         for (let i = 0; i < sentences; i++) {
-            str += this.generateSentence((Math.floor(Math.random()*8) +5), (i === 0)? lorem : false, Math.round(Math.random()));
+            str += this.generateSentence((Math.floor(Math.random()*12) +5), (i === 0)? lorem : false, Math.round(Math.random()));
             if (i < sentences - 1)
                 str += " ";
         }
@@ -56,4 +82,4 @@ class TextGen {
 }
 
 
- exports = module.exports = TextGen;
+  exports = module.exports = TextGen;
