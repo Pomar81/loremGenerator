@@ -1,0 +1,16 @@
+<script>
+    const parRadio =  document.getElementById("paragraph");
+    const senRadio = document.getElementById("sentence");
+
+    parRadio.addEventListener('click', evt => {
+        const amount = document.getElementById("amount");
+        if (amount.value > 7)
+            amount.value = 7;
+        amount.setAttribute("max", "7");
+    });
+
+    senRadio.addEventListener('click', evt => {
+        const amount = document.getElementById("amount");
+        amount.setAttribute("max", "10");
+    });
+</script>

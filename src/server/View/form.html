@@ -1,0 +1,42 @@
+<main>
+
+    <section>
+
+        <form id="genForm" method="post" action="text.html">
+            <h1>Select content</h1>
+
+            <ul class="radioList">
+                <li>
+                    <label for="amount">
+                        <input type="number" id="amount" name="amount" value="1" min="1" max="7">
+                        number
+                    </label>
+                </li>
+                <li>
+                    <label for="paragraph">
+                        <input type="radio" id="paragraph" name="type" value="1" checked >
+                        paragraph
+                    </label>
+                </li>
+                <li>
+                    <label for="sentence">
+                        <input type="radio" id="sentence" name="type" value="2">
+                        sentence
+                    </label>
+                </li>
+                <li>
+                    <label for ="lorem">
+                        <input type="checkbox" id="lorem" name="lorem" value="true" checked>
+                        Lorem ipsum...
+                    </label>
+                </li>
+            </ul>
+            <p> <button type="submit">Generate</button> </p>
+        </form>
+
+    </section>
+
+</main>
+<script>
+
+</script>
