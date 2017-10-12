@@ -38,7 +38,7 @@ class Rendering {
                     text = `<p>${textGen.generateParagraph(query.amount, query.lorem)}</p>`;
                 else {
                     for(let i = 0; i < query.amount; i++)
-                        text+= `<p>${textGen.generateParagraph(10,query.lorem)}</p>`
+                        text+= `<p>${textGen.generateParagraph(10, i===0 ? query.lorem: false)}</p>`
                 }
 
                 return this.readHtmlPart("text", {text: text})
