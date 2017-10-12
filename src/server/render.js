@@ -68,7 +68,7 @@ class Rendering {
             })
             .then((data) => {
                 content+=data;
-                return this.readHtmlPart("footer")
+                return this.readHtmlPart("script")
             })
             .then((data) => {
                 content+=data;
